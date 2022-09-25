@@ -2,7 +2,7 @@
 
 ![image-20220915144220955](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220915144220955.png)
 
-这道题目的话，本身思路不难，但是代码随想录上面java的题解非常不好，所以耽误了很多时间。假设一个stack的数值为 1,2,3,4]   那么根据题目，我们需要两个queue。Queue1用来储存stack的所有数值，所以queue1为[1,2,3,4]，然后当我们需要pop的时候，把1，2，3放到queue2，这时候queue2就是[1,2,3]，queue1只剩下一个"4"，我们把4给pop掉，再把queue2的所有数值加回到queue1
+这道题目的话，本身思路不难，但是代码随想录上面java的题解非常不好，所以耽误了很多时间。假设一个stack的数值为 [1,2,3,4   那么根据题目，我们需要两个queue。Queue1用来储存stack的所有数值，所以queue1为[1,2,3,4]，然后当我们需要pop的时候，把1，2，3放到queue2，这时候queue2就是[1,2,3]，queue1只剩下一个"4"，我们把4给pop掉，再把queue2的所有数值加回到queue1
 
 ~~~java
 class MyStack {

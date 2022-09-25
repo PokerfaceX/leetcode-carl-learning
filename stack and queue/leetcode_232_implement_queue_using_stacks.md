@@ -2,7 +2,7 @@
 
 ![image-20220914231856188](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220914231856188.png)
 
-对于这道题目而言，用一个stack储存输入的数值，一个stack用来储存要输出的数值，才能解决问题。假设一个queue是1->2->3->4，那么stack in就是[1,2,3,4]，这时候我们想pop一下，那么我们就需要把stack in的数值全部导入到stack out，那么stack out就是[4,3,2,1]，stack in为[]，所以直接从stack out里面pop，得出我们想要的1这个数值
+对于这道题目而言，用一个stack储存输入的数值，一个stack用来储存要输出的数值，才能解决问题。假设一个queue是1->2->3->4，那么stack in就是[1,2,3,4，这时候我们想pop一下，那么我们就需要把stack in的数值全部导入到stack out，那么stack out就是[4,3,2,1，stack in为[]，所以直接从stack out里面pop，得出我们想要的1这个数值
 
 ```java
 class MyQueue {

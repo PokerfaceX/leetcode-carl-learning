@@ -30,3 +30,4 @@ class Solution {
 ```
 
 简单解释下nums[++slow] = nums[fast]，在这里slow的数值会先加一，在被赋值成nums[fast]。
+
