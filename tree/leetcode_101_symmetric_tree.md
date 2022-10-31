@@ -2,7 +2,7 @@
 
 ![image-20220924160624179](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220924160624179.png)
 
-对于这道题目而言，问的尽管是二叉树是不是对称的，但是为了解决问题，其实我们需要知道左右子树是不是相互反转的，用人话来说，就是分别比较左子树的内测节点和外侧节点想不想同。
+对于这道题目而言，问的尽管是二叉树是不是对称的，但是为了解决问题，其实我们需要知道左右子树是不是相互反转的，用人话来说，就是分别比较左子树的内测节点和外侧节点相同不相同。
 
 每次做二叉树递归题目的时候，都需要思考，应该用什么遍历顺序。在这里面，对于根节点而言，只要左子树和右子树是相互反转的，那么整个树就是对称的。所以其实我们需要同时遍历两棵树。
 
@@ -25,10 +25,10 @@ class Solution {
             return false;
         }
         // 第三步确认单层逻辑
-        boolean leftSymmetric = dfs(left.left, right.right);
-        boolean rightSymmetric = dfs(left.right, right.left);
+        boolean leftSymmetric = dfs(left.left, right.right); // 左
+        boolean rightSymmetric = dfs(left.right, right.left); // 右
         
-        return leftSymmetric && rightSymmetric;
+        return leftSymmetric && rightSymmetric; // 中
         
     }
 }
