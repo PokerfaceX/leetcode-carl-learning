@@ -17,7 +17,7 @@ class Solution {
     
     public void backtracking(int n, int start, int k) {
         if (path.size() == k) {
-            ans.add(new ArrayList<>(path)); //cun'f'gang
+            ans.add(new ArrayList<>(path));
             return;
         }
         for(int i = start; i <= n; i++) {
