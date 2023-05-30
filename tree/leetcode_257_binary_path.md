@@ -1,43 +1,41 @@
 ### Question 257 Binary Tree Paths
 
-![image-20220926121849894](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220926121849894.png)
+![image-20230507151535842](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230507151535842.png)
 
 这道题目问的是从根节点到所有叶子节点的path，那么很显然我们需要使用前序遍历，因为我们要先处理当前节点再去处理左子树和右子树。但是有一点需要注意，那就是这道题目需要使用到回溯算法，因为我们遍历到叶子节点之后还需要逐渐把节点从当前路径中删除，以此来找到新的路径。
 
 ```java
 class Solution {
-    
+
+    List<String> ans = new ArrayList<>();
+    List<String> path = new ArrayList<>();
+
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList<>();
-        List<Integer> path = new ArrayList<>();
-        dfs(root, result, path);
-        return result;
+        dfs(root);
+        return ans;
     }
-    
-    public void dfs(TreeNode root, List<String> result, List<Integer> path) {
-        // 这道题目规定节点数量最少是1，所以不用担心一开始root为空，其次就是我们在底下会处理空的情况
-        // 中, 加入节点到路径
-        path.add(root.val);
+
+    public void dfs(TreeNode root) {
+       // 直接加入当前节点的值，通过下面的两个if语句我们可以避开所有root==null的情况，并且这道题目里也说了node的最小数量为1，所以root永远不会是null
+        path.add(String.valueOf(root.val));
         if (root.left == null && root.right == null) {
-            // 找到叶子节点的话就把路径加到result数组中
-            StringBuffer s = new StringBuffer();
+            StringBuffer sb = new StringBuffer();
             for(int i = 0; i < path.size() - 1; i++) {
-                s.append(String.valueOf(path.get(i)) + "->");
+                sb.append(path.get(i) + "->");
             }
-            s.append(String.valueOf(path.get(path.size() - 1)));
-            result.add(s.toString());
-            return;
+            sb.append(path.get(path.size() - 1));
+            ans.add(sb.toString());
         }
-        // 这样可以有效防止出现空指针访问，其实就是在回溯的时候，保证弹出的都是应该弹出的路径最后一个节点
         if (root.left != null) {
-            dfs(root.left, result, path);
+            dfs(root.left);
+          	// 回溯
             path.remove(path.size() - 1);
         }
         if (root.right != null) {
-             dfs(root.right, result, path);
+            dfs(root.right);
+          	// 回溯
             path.remove(path.size() - 1);
-        } 
-        
+        }
     }
 }
 ```

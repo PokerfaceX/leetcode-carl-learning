@@ -1,6 +1,6 @@
 ### Question 383 Ransom Note
 
-![image-20220910205337881](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220910205337881.png)
+![image-20230429230532509](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230429230532509.png)
 
 非常简单的题目，一开始是用了hashmap来记录magazine里面各个字母出现的次数，但是后来题目说到只会出现小写的英文字母，所以优化了下空间，用个array记录次数
 
@@ -20,5 +20,20 @@ class Solution {
         return true;
     }
 }
+```
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        map = defaultdict(int)
+        for c in magazine:
+            map[c] += 1
+        for c in ransomNote:
+            if map[c] == 0:
+                return False
+            map[c] -= 1
+        return True
 ```
 

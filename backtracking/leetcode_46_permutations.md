@@ -14,32 +14,29 @@
 
 ```java
 class Solution {
-    
+
+    boolean[] used; // 需要用一个used数组来记载什么数值已经被使用过了，比如找[1,2,3]和[1,3,2]的时候，需要知道对于当前遍历而言，哪些数字已经被用过了，所以应该在for循环里被跳过
     List<Integer> path = new ArrayList<>();
     List<List<Integer>> ans = new ArrayList<>();
-    boolean[] used;
-    
+
     public List<List<Integer>> permute(int[] nums) {
-        used = new boolean[nums.length];
-        traversal(nums);
-        return ans;
+        this.used = new boolean[nums.length];
+        backtracking(nums);
+        return this.ans;
     }
 
-    public void traversal(int[] nums) {
-      // 遍历到叶子节点的时候说明结束了，而叶子节点的判断就是是不是  
-      if (path.size() >= nums.length) {
+    public void backtracking(int[] nums) {
+        if (path.size() == nums.length) {
             ans.add(new ArrayList<>(path));
             return;
         }
         for(int i = 0; i < nums.length; i++) {
-          // 如果使用过直接先跳过  
-          if (used[i] == true) {
+            if (used[i]) {
                 continue;
             }
-            used[i] = true;
             path.add(nums[i]);
-            traversal(nums);
-          // 回溯的过程
+            used[i] = true;
+            backtracking(nums);
             used[i] = false;
             path.remove(path.size() - 1);
         }

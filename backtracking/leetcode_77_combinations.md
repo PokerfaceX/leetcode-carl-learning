@@ -1,6 +1,6 @@
 ### Question 77 Combinations
 
-![image-20221103141624555](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221103141624555.png)
+![image-20230513133648997](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230513133648997.png)
 
 这道题目算是一个经典的回溯算法的应用了，直接上代码解释
 
@@ -29,10 +29,10 @@ class Solution {
     
     // 剪枝操作
     for(int i = start; i <= n - (k - path.size()) + 1; i++) {
-            path.add(i);
-            backtracking(n , i + 1, k);
-            path.remove(path.size() - 1);
-        }
+        path.add(i);
+        backtracking(n , i + 1, k);
+        path.remove(path.size() - 1);
+    }
 }
 ```
 

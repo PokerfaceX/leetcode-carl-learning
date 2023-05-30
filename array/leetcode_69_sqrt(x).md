@@ -1,6 +1,6 @@
 ### Question 69 Sqrt(x)
 
-![image-20220627202928414](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220627202928414.png)
+![image-20230324214856883](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230324214856883.png)
 
 这道题目，用到的是二叉查找的思想。原因就是，在二分查找的过程中，若是找到了平方根，那么直接返回就可以，若是没有，在二分查找的循环结束之后，left或者right的数值就是最接近题目要求的数值(这里就不进行数学的证明了，反正试一下就知道了)。
 

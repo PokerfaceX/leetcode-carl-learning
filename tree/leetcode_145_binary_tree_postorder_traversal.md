@@ -1,6 +1,6 @@
 ### Question 145 Binary Tree Postorder Traversal
 
-![image-20220919214447438](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919214447438.png)
+![image-20230504211124539](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504211124539.png)
 
 postorder，后序遍历，左右中，那么我们就需要先遍历左子树，右子树，在对中间节点进行操作。
 

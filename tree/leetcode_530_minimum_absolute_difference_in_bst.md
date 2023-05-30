@@ -1,71 +1,67 @@
 ### Question 530 Minimum Absolute Difference in BST
 
-![image-20221025084549721](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221025084549721.png)
+![image-20230508212025331](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230508212025331.png)
 
-这道题目其实一开始的想法再次错了，想着做一下的操作，但是其实这道题目的关键还是使用中序遍历，因为在中序遍历的时候，遍历的顺序是左中右，那么对于一个二叉搜索树而言，就可以完美的得到一个从小到大的数组
+![image-20230508212018143](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230508212018143.png)
 
-**错误想法**
+这道题目其实一开始的想法再次错了，我还是想着只要每次比较中间节点和他的左右孩子就行了，但是实际上是，在上面的例子中，最小的diff其实是9，如果我只比较中间节点和左右孩子，那么上面的例子就只能给我123
 
-```java
-if (Maths.abs(root.val - root.left.val) < minDiff) minDiff = Maths.abs(root.val - root.left.val);
 
-if (Maths.abs(root.val - root.right.val) < minDiff) minDiff = Maths.abs(root.val - root.right.val);
-```
 
 上代码
 
 ```java
 class Solution {
-    
-    List<Integer> list = new ArrayList<>();
-    
+
+    List<Integer> list = new LinkedList<>();
+
     public int getMinimumDifference(TreeNode root) {
         dfs(root);
-        int diff = Integer.MAX_VALUE;
+        int smallestDiff = Integer.MAX_VALUE;
         for(int i = 0; i < list.size() - 1; i++) {
-            if (Math.abs(list.get(i) - list.get(i + 1)) < diff) {
-                diff = Math.abs(list.get(i) - list.get(i + 1));
+            int diff = Math.abs(list.get(i) - list.get(i + 1));
+            if (diff < smallestDiff) {
+                smallestDiff = diff;
             }
         }
-        return diff;
+        return smallestDiff;
     }
-    
+
     public void dfs(TreeNode root) {
         if (root == null) {
             return;
         }
         dfs(root.left);
-        list.add(root.val);
+        this.list.add(root.val);
         dfs(root.right);
     }
 }
 ```
 
-以上的代码使用了额外的代码空间，那么就稍微优化一下，看看怎么样才能不使用额外的数组空间
+以上的代码使用了额外的代码空间，那么就稍微优化一下，看看怎么样才能不使用额外的数组空间，这里的双指针法中，curr指针是自动回溯的，因为他是传到了一个方法当成了一个参数，我们不用手动回溯，他自己就会完成
 
 ```java
 class Solution {
-    
-    int minDiff = Integer.MAX_VALUE;
-    TreeNode prev = null; // 用来记录中序遍历时的前一个节点，用来做比较
-    
+		
+  // 双指针遍历，这个指针永远指向curr前面的一个节点
+    TreeNode prev = null;
+    int diff = Integer.MAX_VALUE;
+
     public int getMinimumDifference(TreeNode root) {
         dfs(root);
-        return minDiff;
+        return diff;
     }
-    
+
     public void dfs(TreeNode root) {
         if (root == null) {
             return;
         }
-        // 遍历左子树
         dfs(root.left);
-        // 遍历完左子树之后，中的，处理逻辑
-        if (prev != null && Math.abs(prev.val - root.val) < minDiff) {
-            minDiff = Math.abs(prev.val - root.val);
+        if (prev != null) {
+            diff = Math.min(diff, Math.abs(root.val - prev.val));
         }
+      // prev跟上null
         prev = root;
-        // 遍历
         dfs(root.right);
     }
 }

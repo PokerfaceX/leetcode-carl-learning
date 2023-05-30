@@ -1,6 +1,6 @@
 ### Question 617 Merge Two Binary Trees
 
-![image-20221023223421679](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221023223421679.png)
+![image-20230508205445976](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230508205445976.png)
 
 这道题目其实算是比较简单的一道题目，唯一需要思考一下的点就是如何创建新的Tree。
 

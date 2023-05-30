@@ -2,8 +2,6 @@
 
 ![image-20221125202733748](/Users/jasonjin/Library/Application Support/typora-user-images/image-20221125202733748.png)
 
-其实这道题目和前面所有的去重题目都很类似，都需要用到used数组与排序。之所以要排序是因为要和他前面的元素进行对比来查看是否已一样，used数组可以来查重。
-
 
 
 ~~~java
@@ -26,10 +24,11 @@ class Solution {
             return;
         }
         for(int i = 0; i < nums.length; i++) {
+          // 去重的逻辑，树层去重，used[i - 1] == false就是树层去重，因为会被回溯
             if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false) {
                 continue;
             }
-          // 下面的这一步就是导致一开始错误的原因，如果没有这一行，那么我就没法判断一个元素到底有没有加入过数组里，比如说当前数组为[1, 1, 2]，我在第一层for循环加入了一个1，那么因为我没有startIndex，我还是从i == 0开始遍历，我很容易把同一个下标的元素重复使用。
+          // 逻辑的话和46类似，用来跳过当前已经加入到path里的数字
             if (used[i] == true) {
                 continue;
             }

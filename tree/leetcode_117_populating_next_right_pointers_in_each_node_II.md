@@ -1,6 +1,6 @@
 ### Question 117 Populating Next Right Pointers in Each Node II
 
-![image-20220923205702689](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220923205702689.png)
+![image-20230505235449624](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230505235449624.png)
 
 和leetcode 116题没有任何的区别，一样的代码一样的味道
 
@@ -8,17 +8,18 @@
 class Solution {
     public Node connect(Node root) {
         Queue<Node> queue = new LinkedList<>();
-        if (root != null) {
-            queue.add(root);
+        if (root == null) {
+            return null;
         }
+        queue.add(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            for(int i = 0 ; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 Node curr = queue.poll();
-                if (i < size - 1) {
-                    curr.next = queue.peek();
-                } else {
+                if (i == size - 1) {
                     curr.next = null;
+                } else {
+                    curr.next = queue.peek();
                 }
                 if (curr.left != null) {
                     queue.add(curr.left);
@@ -29,6 +30,7 @@ class Solution {
             }
         }
         return root;
+
     }
 }
 ```

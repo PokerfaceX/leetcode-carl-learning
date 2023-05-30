@@ -1,6 +1,6 @@
 ### Question 142 Linked List Cycle II
 
-![image-20220907221141211](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220907221141211.png)
+![image-20230426223654405](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230426223654405.png)
 
 这道题目，跟之前的141题非常相像，做法也是类似的，但是多了一点点改动，我们要找到具体环的入口。
 
@@ -41,5 +41,28 @@ public class Solution {
         return null;
     }
 }
+```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow, fast = head, head
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                tmp1 = head
+                tmp2 = slow
+                while tmp1 != tmp2:
+                    tmp1 = tmp1.next
+                    tmp2 = tmp2.next
+                return tmp1
+        return None
 ```
 

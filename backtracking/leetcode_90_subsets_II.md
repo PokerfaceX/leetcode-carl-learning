@@ -1,41 +1,35 @@
 ### Question 90 Subsets II
 
-![image-20221112140131631](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221112140131631.png)
+![image-20230514161502026](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230514161502026.png)
 
-这道题目其实是一个leetcode_40和leetcode_78的混合题目，再一次涉及到了树层的去重。
-
-![image-20221112140250028](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221112140250028.png)
+这道题目其实是一个leetcode_40和leetcode_78的混合题目，再一次涉及到了树层的去重。去重的逻辑和第40题一摸一样，这里就不在重复了。添加的逻辑也和leetcode_78一样，每一个节点都是一个答案，添加到ans中，也不需要任何剪枝操作，因为每一个树枝都是需要的
 
 ```java
 class Solution {
+
     List<Integer> path = new ArrayList<>();
     List<List<Integer>> ans = new ArrayList<>();
-    boolean[] used;
-    
+
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        used = new boolean[nums.length];
         Arrays.sort(nums);
-        traversal(nums, 0);
+        backtracking(nums, 0);
         return ans;
     }
 
-    public void traversal(int[] nums, int startIndex) {
+    public void backtracking(int[] nums, int startIndex) {
         ans.add(new ArrayList<>(path));
-        if (startIndex > nums.length) {
-            return;
-        }
         for(int i = startIndex; i < nums.length; i++) {
-            // 这里之所以看是不是false是因为我们要做的是树层去重，当回溯过后used[i - 1]肯定是false，那么这个时候如果当前数值和前一个数值相等，就肯定是重复得了
-            if (i != 0 && nums[i] == nums[i - 1] && used[i - 1] == false) {
+            if (i != startIndex && nums[i] == nums[i - 1]) {
                 continue;
             }
             path.add(nums[i]);
-            used[i] = true;
-            traversal(nums, i + 1);
-            used[i] = false;
+            backtracking(nums, i + 1);
             path.remove(path.size() - 1);
         }
+
     }
+
+
 }
 ```
 

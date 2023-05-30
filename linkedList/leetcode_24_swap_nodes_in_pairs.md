@@ -1,10 +1,8 @@
 ### Question 24 Swap Node in Pairs
 
-![image-20220903133602456](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220903133602456.png)
+![image-20230420201748390](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230420201748390.png)
 
 这道题目乍一看，可能会比较蒙蔽，但是其实方法也非常明显，Carl哥的图片其实就表达的很好了
-
-![image-20220903133650648](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220903133650648.png)
 
 ```java
 /**
@@ -38,4 +36,30 @@ class Solution {
     }
 }
 ```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(-1, head)
+        curr = dummy
+        while curr.next and curr.next.next:
+            after = curr.next.next.next
+
+            first = curr.next
+            second = curr.next.next
+
+            curr.next = second
+            second.next = first
+            first.next = after
+
+            curr = first
+        return dummy.next
+```
+
+
 

@@ -1,6 +1,6 @@
 ### Question 144 Binary Tree Preorder Traversal
 
-![image-20220919212710003](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919212710003.png)
+![image-20230504210850184](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504210850184.png)
 
 preorder，也就是前序遍历，我们需要用中左右的方式来遍历，先记录中间节点，再去遍历左子树，再去右子树。
 

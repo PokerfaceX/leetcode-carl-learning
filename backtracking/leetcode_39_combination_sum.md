@@ -1,10 +1,10 @@
 ### Question 39 Combination Sum
 
-![image-20221105220902829](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221105220902829.png)
+![image-20230513173816669](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230513173816669.png)
 
 这道题目也是一道经典的回溯遍历的问题，但是唯一的不同就是说在递归的时候可以遍历重复的数字
 
-![image-20221105221938189](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221105221938189.png)
+![image-20230513173837462](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230513173837462.png)
 
 
 

@@ -2,77 +2,7 @@
 
 ![image-20221031214218520](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221031214218520.png)
 
-一开始想直接复刻 leetcode_450的解法，但是发现不管用
-
-```java
-class Solution {
-    public TreeNode trimBST(TreeNode root, int low, int high) {
-        if (root == null) {
-            return null;
-        }
-        // 写到这里就蒙了，因为不知道该怎么接住
-        if (root.val < low) {
-            
-        }
-    }
-    
-    public TreeNode deleteNode(TreeNode curr) {
-        if (curr.left != null && curr.right == null) {
-            return curr.left;
-        } else if (curr.left == null && curr.right != null) {
-            return curr.right;
-        } else {
-            TreeNode tmp = curr.right;
-            while (tmp.left != null) {
-                tmp = tmp.left;
-            }
-            tmp.left = curr.left;
-            return curr.right;
-        }
-        return null;
-    }
-}
-```
-
-
-
-第二种想法:
-
-```java
-class Solution {
-    public TreeNode trimBST(TreeNode root, int low, int high) {
-        if (root == null) {
-            return null;
-        }
-        if (root.val < low) {
-            
-            if (root.right != null && root.right.val >= low) {
-                return root.right;
-            } else {
-                return null;
-            }
-        }
-        if (root.val > high) {
-            if (root.left != null && root.left.val <= high) {
-                return root.left;
-            } else {
-                return null;
-            }
-        }
-        root.left = trimBST(root.left, low, high);
-        root.right = trimBST(root.right, low, high);
-        return root;
-    }
-}
-```
-
-上面的做法也不行，参考这个树
-
-![image-20221101084650744](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221101084650744.png)
-
-如果按照上面的做法，在根节点的时候，发现比high大，然后看了左子树也比1大，所以直接return了null但是其实很明显这样是错的
-
-
+这道题目需要一种很巧妙的做法，我们其实没有动态的去删除节点，而是单纯的把符合区域的节点返回给上一层
 
 **正确做法**
 
@@ -83,13 +13,15 @@ class Solution {
             return null;
         }
         if (root.val < low) {
-        // 解决了上面的情况，直接不断的进行遍历
-            return trimBST(root.right, low, high);
+          // 得到一个符合规定的右子树
+            TreeNode rightValidTree = trimBST(root.right, low, high);
+            return rightValidTree;
+        } else if (root.val > high) {
+          // 得到一个符合规定的左子树
+            TreeNode leftValidTree = trimBST(root.left, low, high);
+            return leftValidTree;
         }
-        if (root.val > high) {
-            return trimBST(root.left, low, high);
-        }
-        root.left = trimBST(root.left, low, high); // 
+        root.left = trimBST(root.left, low, high);
         root.right = trimBST(root.right, low, high);
         return root;
     }
@@ -99,3 +31,9 @@ class Solution {
 
 
 上面之所以能删除节点，是因为直接把被修剪之后的子树返还给了父亲节点。
+
+区间为[3, 7]
+
+![image-20230509210635806](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230509210635806.png)
+
+比如上面这个例子，我们的0不符合规矩，那么比0还小的数值肯定低于L，那么就去看0的右子树，一个个检查，发现3符合规矩，那么在看3的左右子树，发现2不符合条件，那么我们这时候就会去遍历2的右子树，因为是空所有就会向上一层返回空，那么3的左孩子就为空了，如此以来我们就实现了2节点的**"删除"**，并且最终给节点7返回的是节点3，也就实现了节点0的删除

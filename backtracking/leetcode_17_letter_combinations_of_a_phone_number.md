@@ -1,6 +1,6 @@
 ### Question 17 Letter Combinations of a phone number
 
-![image-20221105213350419](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221105213350419.png)
+![image-20230513170352003](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230513170352003.png)
 
 这道题目有思路，但是确实是看了卡哥的代码才知道怎么写的，但是和leetcode_77和leetcode_216相比，有了一些不同，不同的就是每一次遍历的字符串不一样了
 
@@ -27,7 +27,8 @@ class Solution {
     StringBuffer sb = new StringBuffer();
 
     public List<String> letterCombinations(String digits) {
-        if (digits.equals("")) {
+      // 这里是因为如果digits为“”的话，没有这个if语句，traversal函数会被执行，然后一个空的“”就被加到了ans里面  
+      if (digits.equals("")) {
             return ans;
         }
         traversal(digits, 0);

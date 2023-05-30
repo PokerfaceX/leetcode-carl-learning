@@ -1,6 +1,6 @@
 ### Question 105 Construct Binary Tree From Preorder and Inorder Traversal
 
-![image-20221001215638470](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221001215638470.png)
+![image-20230508203218101](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230508203218101.png)
 
 这道题目和leetcode_106题完全是一个思路，只要理解了leetcode_106题，那么就完全没问题。这里的话，为了方便理解，放一个链接
 
@@ -14,24 +14,26 @@ class Solution {
         if (preorder.length == 0) {
             return null;
         }
-        TreeNode currRoot = new TreeNode(preorder[0]);
-        int middleIndex = 0;
-        for(; middleIndex < inorder.length; middleIndex++) {
-            if (inorder[middleIndex] == currRoot.val) {
+        int rootValue = preorder[0];
+        int index = -1;
+        for(int i = 0; i < inorder.length; i++) {
+            if (inorder[i] == rootValue) {
+                index = i;
                 break;
             }
         }
-        
-        int[] leftIn = Arrays.copyOfRange(inorder, 0, middleIndex);
-        int[] rightIn = Arrays.copyOfRange(inorder, middleIndex + 1, inorder.length);
-        
-        int[] leftPre = Arrays.copyOfRange(preorder, 1, 1 + middleIndex);
-        int[] rightPre = Arrays.copyOfRange(preorder, 1 + middleIndex, preorder.length);
-        
-        // 下面的话两个变量的顺序放错了ji
-        currRoot.left = buildTree(leftPre, leftIn);
-        currRoot.right = buildTree(rightPre, rightIn);
-        return currRoot;
+
+        int[] leftInorder = Arrays.copyOfRange(inorder, 0, index);
+        int[] rightInorder = Arrays.copyOfRange(inorder, index + 1, inorder.length);
+
+        int[] leftPreorder = Arrays.copyOfRange(preorder, 1, 1 + leftInorder.length);
+        int[] rightPreorder = Arrays.copyOfRange(preorder, 1 + leftInorder.length, preorder.length);
+
+        TreeNode currNode = new TreeNode(rootValue);
+        currNode.left = buildTree(leftPreorder, leftInorder);
+        currNode.right = buildTree(rightPreorder, rightInorder);
+
+        return currNode;
     }
 }
 ```

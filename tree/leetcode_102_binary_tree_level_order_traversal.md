@@ -1,6 +1,6 @@
 ### Question 102 Binary Tree Level Order Traversal
 
-![image-20220922215127964](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220922215127964.png)
+![image-20230505211105658](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230505211105658.png)
 
 这道题目要求的是层序遍历，其实二叉树的层序遍历就是图论里面广度优先搜索bfs的一种，这种遍历是一定需要用到队列的。下面就是一个模板
 

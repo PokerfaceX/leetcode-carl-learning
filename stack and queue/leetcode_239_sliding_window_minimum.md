@@ -1,6 +1,6 @@
 ### Question 239 Sliding Window Minimum
 
-![image-20220916230653630](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220916230653630.png)
+![image-20230503212117109](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230503212117109.png)
 
 对于这道题目而言，如果能有这么一个Queue，可以用O(1)的方法获得当前窗口的最大数值，那么就会让整个答案变成O(n)，因为我们唯一需要做的就是，遍历nums这个数组，poll一下，add一下，在找一下最大值，只要能让这三个操作变成O(1)，那么就会是最优化的题解，其实可以发现这个队列是一个单调队列，也就是说这个队列里面的数值永远是递增或者递减的
 
@@ -58,6 +58,45 @@ class Solution {
 }
 ```
 
-https://programmercarl.com/0239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.html
 
-可能到时候会有点懵，点击网站上面的bilibili链接，画一下就会很好理解
+
+代码随想录的题解讲的不怎么好，这里看的neetcode的题解
+
+https://www.youtube.com/watch?v=DfljaUwZsOk&t=152s
+
+
+
+```java
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        // 这个就相当于是我们灵活的队列，最前面的数值就是当前窗框的最大值
+        Deque<Integer> deque = new LinkedList<>();
+        int left = 0, right = 0;
+        int index = 0;
+        int[] array = new int[nums.length - k + 1]; // 储存答案
+        while(right < nums.length) {
+          	// 每次我们想加入数值的时候，从队列的最后面一个个看，如果要加入的数值大于栈的最右侧数值，就一个个移除，甚至可以全部移除，也就是说要加入的数值大于之前窗口里面所有的数值
+            while (!deque.isEmpty() && nums[deque.getLast()] < nums[right]) {
+                deque.removeLast();
+            }
+          // 这里我们储存的是下标，方便到时候移除不在当前窗口的数值
+            deque.addLast(right);
+          	// 如果left下标大于我们队列的最左侧（最大值）的下标，就说明这个数字不属于当前窗口，移除它
+            if (left > deque.getFirst()) {
+                deque.removeFirst();
+            }
+          // 很难想到的情况，如果right下标小于k的话说明我们连第一个窗口都没看完
+            if (right + 1 >= k) {
+                // left下标也应该不断的迭代，
+                array[index++] = nums[deque.getFirst()];
+                left++;
+            }
+            right++;
+        }
+        return array;
+
+        
+    }
+}
+```
+

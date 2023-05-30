@@ -1,6 +1,6 @@
 ### Question 104 Maximum Depth Of Binary Tree
 
-![image-20220923210059166](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220923210059166.png)
+![image-20230505235758994](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230505235758994.png)
 
 还是在套用树的bfs遍历模板，只要在层序遍历每一层之前，用一个变量来记录层数就好了
 
@@ -32,11 +32,11 @@ class Solution {
 
 其实这道题目，更多的是用DFS来解决问题，但是得先了解一下一个树的高度(height)和深度(depth)的区别
 
-![image-20220924163305630](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220924163305630.png)
 
-深度：根节点到当前节点的距离
 
-高度:  从当前节点到叶子节点的最远距离
+深度：根节点到当前节点的距离，depth
+
+高度:  从当前节点到叶子节点的最远距离，height
 
 
 
@@ -59,7 +59,9 @@ class Solution {
         
         int height = 1 + Math.max(leftHeight, rightHeight); // 中
         return height;
+      // return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
     }
 }
 ```
 
+上面使用了后续遍历，也是最常规的递归写法，对于怎么调用当前函数而完成递归而言，我们只需要知道，当我们得到了左子树的高度和右子树的高度之后，那么当前节点的高度就是1 + 这两个高度的最大值就行，不用去想象整个递归的过程

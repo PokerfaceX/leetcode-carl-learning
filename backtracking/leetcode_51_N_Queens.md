@@ -10,71 +10,77 @@
 
 ~~~java
 class Solution {
-    
+    char[][] array;
     List<List<String>> ans = new ArrayList<>();
-    char[][] chessBoard;
-    
+
     public List<List<String>> solveNQueens(int n) {
-        chessBoard = new char[n][n];
-        // 棋盘的初始化
+        this.array = new char[n][n];
         for(int i = 0; i < n; i++) {
-            Arrays.fill(chessBoard[i], '.');
+            for(int j = 0; j < n; j++) {
+                array[i][j] = '.'; 
+            }
         }
-        traversal(chessBoard, 0, n); // 我们需要一个currRow变量来看当前遍历到第几层了，for循环是看遍历到第几列了
-        return ans;
+        traversal(array, 0, n);
+        return this.ans;
     }
 
-    public void traversal(char[][] chessBoard, int currRow, int n) {
-      // 当目前行数等于n的时候说明到了叶子结点，返回就行，在这里我们可以放心的认为叶子结点都是符合规定的棋盘因为不符合规定的情况在循环中就被跳过了
-      if (currRow >= n) {
-            ans.add(convert2DArrayToList(chessBoard));
+    public void traversal(char[][] array, int startRow, int n) {
+      // 如果遍历到了一个空节点，也就是当当前行数大于等于n的时候就说明找到了一个合法的二位数组棋盘
+        if (startRow >=n) {
+            this.ans.add(collectAnswer(array));
             return;
         }
-        for(int col = 0; col < n; col++) {
-            // 不管三七二十一，直接先放一个皇后棋子
-            chessBoard[currRow][col] = 'Q';
-            // 看看当前的棋盘是不是符合规定的
-            if (validChessBoard(chessBoard, col, currRow)) {
-                traversal(chessBoard, currRow + 1, n);
-            }
-            chessBoard[currRow][col] = '.'; // 常规的回溯操作
-
+        for(int column = 0; column < n; column++) {
+          // 不管怎样，先放一个queen
+            array[startRow][column] = 'Q';
+            if (checkValidChessBoard(array, startRow,column)) {
+                traversal(array, startRow + 1, n);
+            } 
+          // 不管上面的checkValid返回了什么，都要进行回溯，dfs一次，回溯一次，要不然一行会有俩queen
+            array[startRow][column] = '.';
+            
         }
     }
-    
-    // valid棋盘只需要看横着，竖着，斜着，在这三条线上有没有棋子
-    public boolean validChessBoard(char[][] chessBoard, int currCol, int currRow) {
-      // 画图才能解释清楚，简单来说我们没必要遍历所有的row，因为假设row目前为3，那么row等于4或者5的时候，那里是不可能有棋子的  
-      
-      // 按照row来排查，看看有没有女王
-      for(int i = 0; i < currRow; i++) {
-            if (chessBoard[i][currCol] == 'Q') {
+
+    public boolean checkValidChessBoard(char[][] array, int row, int column) {
+        // vertically
+      // 看看竖着的一列有没有其他queen
+        for(int i = 0; i < array.length; i++) {
+            if(i != row && array[i][column] == 'Q') {
                 return false;
             }
         }
-      // 从最新的queen的位置的左上角到棋盘的左上角有没有棋子
-        for(int i = currRow - 1, j = currCol - 1; i >= 0 && j >= 0; i--, j--) {
-            if (chessBoard[i][j] == 'Q') {
+        // horizontally
+      // 看看横着的一列有没有queen
+        for(int j = 0; j < array.length; j++) {
+            if (j != column && array[row][j] == 'Q') {
                 return false;
             }
         }
-      // 从最新的queen的位置的右上角到棋盘的右上角有没有棋子
-        for(int i = currRow - 1, j = currCol + 1; i >= 0 && j <= chessBoard.length - 1; i--, j++) {
-            if (chessBoard[i][j] == 'Q') {
+        // left diagonol
+      // 假设我们的回溯算法写的完美，那么在当前皇后的下面，不可能有其他皇后，所以只需要检查左上斜线
+        for(int i = row - 1, j = column - 1; i >= 0 && j >= 0; i--, j--) {
+            if (array[i][j] == 'Q') {
+                return false;
+            }
+        }
+        // right diagonol
+      // 同理，只检查右上斜线
+        for(int i = row - 1, j = column + 1; i >= 0 && j <= array.length - 1; i--, j++) {
+            if (array[i][j] == 'Q') {
                 return false;
             }
         }
         return true;
+
     }
-		
-  // 这个函数没什么特别的，就是把一个2d数组转换成一个list of string
-    public List<String> convert2DArrayToList(char[][] chessBoard) {
-        List<String> tmp = new ArrayList<>();
-        for(int i = 0; i < chessBoard.length; i++) {
-            String rowString = String.valueOf(chessBoard[i]); // 可以直接吧char数组转换成list
-            tmp.add(rowString);
+	// 当我们获得了一个2维数组的时候，把它转换成一个list，用来加入到答案
+    public List<String> collectAnswer(char[][] array) {
+        List<String> puzzle = new ArrayList<>();
+        for(int i = 0; i < array.length; i++) {
+            puzzle.add(String.valueOf(array[i]));
         }
-        return tmp;
+        return puzzle;
     }
 }
 ~~~

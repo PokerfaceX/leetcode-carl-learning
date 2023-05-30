@@ -1,6 +1,6 @@
 ### Question 35 Search Insert Position
 
-![image-20220626192140269](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220626192140269.png)
+![image-20230322221223998](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230322221223998.png)
 
 又是一道经典的二分查找题目，为什么是二分查找呢？其实只需要看几个关键信息。这道题目要求时间复杂度为O(log n)，并且给了一个排好序的数组
 
@@ -26,5 +26,20 @@ class Solution {
         return right;
     }
 }
+```
+
+```python
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums)
+        while left < right:
+            mid = (left + right) // 2;
+            if target > nums[mid]:
+                left = mid + 1
+            elif target < nums[mid]:
+                right = mid
+            else:
+                return mid
+        return right
 ```
 

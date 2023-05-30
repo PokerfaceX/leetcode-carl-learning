@@ -1,6 +1,6 @@
 ### Question 242 Valid Anagram
 
-![image-20220908090312613](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220908090312613.png)
+![image-20230427221620252](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230427221620252.png)
 
 这道题目算是非常简单的了，我们只需要定义一个长度为26的数组，记录下每一个字母出现的次数就好
 
@@ -27,5 +27,22 @@ class Solution {
         
     }
 }
+```
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        map1, map2 = {}, {}
+        for c in s:
+            if c not in map1:
+                map1[c] = 1
+            else:
+                map1[c] += 1
+        for c in t:
+            if c not in map2:
+                map2[c] = 1
+            else:
+                map2[c] += 1
+        return map1 == map2
 ```
 

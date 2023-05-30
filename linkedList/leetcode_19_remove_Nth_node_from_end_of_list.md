@@ -1,6 +1,6 @@
 ### Question 19 Remove Nth Node From End of List
 
-![image-20220905212109449](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220905212109449.png)
+![image-20230420203348557](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230420203348557.png)
 
 刚看到这道题目，第一个思路就是快慢指针。假设n为2，那么就先让快指针领先慢指针两步，在同时便利它们。大概是这样的逻辑，但是需要处理一下边边角角的情况。上代码
 
@@ -35,5 +35,30 @@ class Solution {
         return head;
     }
 }
+```
+
+
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        curr = head
+        after = head
+        for i in range(0, n):
+            after = after.next
+
+        if after == None:
+            return head.next
+
+        while after.next != None:
+            after = after.next
+            curr = curr.next
+        curr.next = curr.next.next
+        return head
 ```
 

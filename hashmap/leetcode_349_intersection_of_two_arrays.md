@@ -1,6 +1,6 @@
 ### Question 349 Intersection of Two Arrays
 
-![image-20220908223846743](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220908223846743.png)
+![image-20230427222214421](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230427222214421.png)
 
 这道题目的逻辑本身并不复杂， 定义一个set来存放nums1的数值，若是nums2的任意数值在set里面出现过，就说明是交集
 
@@ -25,5 +25,16 @@ class Solution {
         return ans.stream().mapToInt(i -> i.intValue()).toArray();
     }
 }
+```
+
+```python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        set1, set2 = set(), set()
+        for num in nums1:
+            set1.add(num)
+        for num in nums2:
+            set2.add(num)
+        return list(set1.intersection(set2))
 ```
 

@@ -1,10 +1,12 @@
 ### Question 98 Validate Binary Search Tree
 
-![image-20221024224437115](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221024224437115.png)
+![image-20230508210938425](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230508210938425.png)
 
-一开始的时候，我想成了后续遍历并且写出了类似的代码![image-20221024224517816](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221024224517816.png)
+一开始陷入了一个误区，我只是在单纯的单纯的每一个节点，他们左节点小于他，右节点大于它，但是这样行不通，因为我们需要保证**左子树所有节点小于中间节点**，**右子树所有节点大于中间节点**
 
-这样写肯定不行，所以比较简单的做法就是，用中序遍历，因为对于一个二叉搜索树而言，如果使用了中序遍历就可以把数组从小到大排开。
+
+
+这道题目涉及到了一个知识点，对于一个二叉搜索树而言，他的**遍历必然是生序的**
 
 ```java
 class Solution {

@@ -14,15 +14,13 @@
 
 所有的叶子节点都在同一层，并且所有非叶子节点的度数为2
 
-![image-20220919122650333](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919122650333.png)
-
-
+#### ![image-20230504185619007](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504185619007.png)
 
 ### 完全二叉树, Complete Binary Tree
 
 在完全二叉树中，除了最底层的节点可能没有填满以外，其他的层数都填满了，并且所有的叶子节点全部向左对对齐，均是集中在最左边的若干位置
 
-![image-20220919122909984](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919122909984.png)
+![image-20230504185700164](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504185700164.png)
 
 在之前leetcode347里面所用的堆就是一个完全二叉树(complete binary tree)，只不过父子节点之间是有着顺序关系的
 
@@ -32,7 +30,7 @@
 
 在完满二叉树(Full Binary Tree)中，所有非叶子结点的度数为2，也就是说对于当前节点而言，只要有孩子节点，那么必定有2个子节点
 
-![image-20220919123523634](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919123523634.png)
+![image-20230504185801409](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504185801409.png)
 
 ### 二叉搜索树, Binary Search Tree
 
@@ -48,7 +46,7 @@
 
 平衡二叉搜索树：是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。
 
-![image-20220919123839622](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919123839622.png)
+![image-20230504185843420](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504185843420.png)
 
 
 
@@ -66,7 +64,7 @@
 
 ## 二叉树的遍历方式
 
-跟图论一样，二叉树也有两种遍历方式，分别为DFS和BFS，从这里进行了一些扩展，才出现了专属于数的遍历方法。
+跟图论一样，二叉树也有两种遍历方式，分别为DFS和BFS，从这里进行了一些扩展，才出现了专属于树的遍历方法。
 
 - 深度优先搜索(DFS)
   - 前序遍历 -> 中左右
@@ -93,11 +91,9 @@
 
 
 
-**深度**：根节点到当前节点的距离
+**深度**：根节点到一个节点的距离，depth
 
-**高度**:  从当前节点到叶子节点的最远距离
-
-
+**高度**:  从一个节点到叶子节点的最远距离，height
 
 
 

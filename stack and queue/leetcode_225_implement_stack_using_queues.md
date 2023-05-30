@@ -1,6 +1,6 @@
 ### Question 225 Implement Stack Using Queues
 
-![image-20220915144220955](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220915144220955.png)
+![image-20230501202731483](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230501202731483.png)
 
 这道题目的话，本身思路不难，但是代码随想录上面java的题解非常不好，所以耽误了很多时间。假设一个stack的数值为 [1,2,3,4   那么根据题目，我们需要两个queue。Queue1用来储存stack的所有数值，所以queue1为[1,2,3,4]，然后当我们需要pop的时候，把1，2，3放到queue2，这时候queue2就是[1,2,3]，queue1只剩下一个"4"，我们把4给pop掉，再把queue2的所有数值加回到queue1
 
@@ -84,6 +84,56 @@ class MyStack {
     
     public boolean empty() {
         return queue.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
+```
+
+
+
+下面的这个才是最正宗的题解，deque涉及到了队列的非常规操作，第一个方法又太过复杂， 所以下面的这个是最好的
+
+```java
+class MyStack {
+    
+    Queue<Integer> queue1 = new LinkedList<>();
+    Queue<Integer> queue2 = new LinkedList<>();
+
+    public MyStack() {
+        
+    }
+    
+    public void push(int x) {
+        queue1.add(x);
+    }
+    
+    public int pop() {
+        while (queue1.size() > 1) {
+            queue2.add(queue1.poll());
+        }
+        int value = queue1.poll();
+      	// 就是把queue2的数值全部在放回到quueue1，这里直接用指针来完成
+        queue1 = queue2;
+        queue2 = new LinkedList<>();
+        return value;
+    }
+    
+    public int top() {
+        int value = this.pop();
+        this.queue1.add(value);
+        return value;
+    }
+    
+    public boolean empty() {
+        return this.queue1.isEmpty();
     }
 }
 

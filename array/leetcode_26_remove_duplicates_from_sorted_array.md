@@ -1,8 +1,8 @@
 ### Question 26 Remove Duplicates from Sorted Array
 
-![image-20220627212410714](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220627212410714.png)
+![image-20230319092021603](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230319092021603.png)
 
-![image-20220627212422429](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220627212422429.png)
+![image-20230319092039390](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230319092039390.png)
 
 其实这道题目，一开始想的时候可能会有点懵，但是其实就是一道经典的滑动窗口题目。滑动窗口的入门请参考一下文章，
 
@@ -30,4 +30,3 @@ class Solution {
 ```
 
 简单解释下nums[++slow] = nums[fast]，在这里slow的数值会先加一，在被赋值成nums[fast]。
-

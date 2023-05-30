@@ -4,7 +4,7 @@
 
 题目截图
 
-![image-20220624190802700](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220624190802700.png)
+![image-20230415153708640](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230415153708640.png)
 
 **暴力法的话时间复杂度为O(n) + O(n*log(n))，在这里我们不予考虑**
 
@@ -35,6 +35,23 @@ class Solution {
 
 
 
+```python
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        answer = []
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            leftSquare = nums[left] ** 2
+            rightSquare = nums[right] ** 2
+            if leftSquare > rightSquare:
+                answer.insert(0, leftSquare)
+                left += 1
+            else:
+                answer.insert(0, rightSquare)
+                right -= 1
+        return answer
+```
 
 
- 
+
+ 这里用了insert方法，可以插入到任意位置，然后那个位置以及后面的所有数字都会往后移动一格

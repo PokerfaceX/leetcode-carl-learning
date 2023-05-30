@@ -1,6 +1,6 @@
 ### Question 515 Find Largest Value in Each Tree Row
 
-![image-20220923202959620](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220923202959620.png)
+![image-20230505214500994](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230505214500994.png)
 
 这道题目只需要套用层序遍历的模板就好，我们通过queue来进行bfs遍历，只不过在每一层找到最大的值
 
@@ -8,27 +8,27 @@
 class Solution {
     public List<Integer> largestValues(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        if (root != null) {
-            queue.add(root);
+        if (root == null) {
+            return ans;
         }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            int max = Integer.MIN_VALUE;
-            while (size > 0) {
+            Integer largest = Integer.MIN_VALUE;
+            for(int i = 0; i < size; i++) {
                 TreeNode curr = queue.poll();
-                if (curr.val > max) {
-                    max = curr.val;
-                }
                 if (curr.left != null) {
-                    queue.add(curr.left);                    
+                    queue.add(curr.left);
                 }
                 if (curr.right != null) {
                     queue.add(curr.right);
                 }
-                size--;
+                if (curr.val > largest) {
+                    largest = curr.val;
+                }
             }
-            ans.add(max);
+            ans.add(largest);
         }
         return ans;
     }

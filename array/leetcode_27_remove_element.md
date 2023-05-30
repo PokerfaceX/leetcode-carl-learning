@@ -1,8 +1,8 @@
 ### Question 27 Remove Element
 
-![image-20220624183741275](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220624183741275.png)
+![image-20230320221230535](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230320221230535.png)
 
-![image-20220624183751767](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220624183751767.png)
+![image-20230320221246359](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230320221246359.png)
 
 #####  
 
@@ -55,5 +55,19 @@ class Solution {
         return newLength;
     }
 }
+```
+
+
+
+```python
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        slow, fast = 0, 0
+        while fast < len(nums):
+            if nums[fast] != val:
+                nums[slow] = nums[fast]
+                slow += 1
+            fast += 1
+        return slow
 ```
 

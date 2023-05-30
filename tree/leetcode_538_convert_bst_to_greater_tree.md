@@ -1,8 +1,34 @@
 ### Question 538 Convert BST to Greater Tree
 
-![image-20221101095826021](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221101095826021.png)
+![image-20230510224014188](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230510224014188.png)
 
-这道题目一开始想的时候没什么头绪，但是看了下提示发现，其实就是使用右中左的遍历方式，才逐渐递增每个数值的节点。类似于把一个数组比如[1,2,3,4,5]变成[15,14,12,9,5]的过程，只不过是变成了二叉树
+这道题目一开始想的时候没什么头绪，但是仔细想了想发现，其实就是使用右中左的遍历方式就可以了，同时我们使用一个prev指针来记录指针的数值，那么每次就加到当前的节点就可以了
+
+
+
+```java
+class Solution {
+
+    TreeNode prev = null;
+
+    public TreeNode convertBST(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        convertBST(root.right);
+        if (prev != null) {
+            root.val += prev.val;
+        }
+        prev = root;
+        convertBST(root.left);
+        return root;
+    }
+}
+```
+
+
+
+下面的话大同小异，只是把prev当成一个数值使用
 
 ~~~java
 class Solution {

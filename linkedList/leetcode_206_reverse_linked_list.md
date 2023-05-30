@@ -1,6 +1,6 @@
 ### Question 206 Reverse Linked List
 
-![image-20220629215405517](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220629215405517.png)
+![image-20230420194307407](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230420194307407.png)
 
 解决这道题目需要两个指针，一个pre(previous)，一个curr(current)，这个curr指针一开始和head指向的节点是一样的。pre则是一直指向着curr之前的节点。
 
@@ -34,5 +34,19 @@ class Solution {
         return pre;
     }
 }
+```
+
+```python
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head == None:
+            return head
+        prev, curr = None, head
+        while curr != None:
+            after = curr.next
+            curr.next = prev
+            prev = curr
+            curr = after
+        return prev
 ```
 

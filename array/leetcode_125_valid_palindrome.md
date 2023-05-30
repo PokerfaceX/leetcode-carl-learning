@@ -12,7 +12,7 @@ class Solution {
         StringBuffer sBuffer = new StringBuffer();
         for(char c: s.toCharArray()) {
             if (Character.isLetter(c) || Character.isDigit(c)) {
-                sBuffer.append(Character.toUpperCase(c));
+                sBuffer.append(Character.toLowerCase(c));
             }
         }
         int left = 0, right = sBuffer.length() - 1;

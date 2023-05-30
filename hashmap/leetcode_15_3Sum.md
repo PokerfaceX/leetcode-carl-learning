@@ -1,6 +1,6 @@
 ### Question 15 3Sum
 
-![image-20220910100959239](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220910100959239.png)
+![image-20230429231511674](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230429231511674.png)
 
 这道题目，看了题解，才理解做法。其实本质上就是双指针，但是这道题目，难就难在去重上。举个例子，如果数组是[-1, -1, -1, 1, 1, 2]，那么我们只能返回一个答案也就是[-1, -1, 2]，如果没有好好去重，那么就有可能导致出现重复的答案。
 
@@ -50,4 +50,29 @@ class Solution {
 }
 ```
 
- 
+ ```python
+ class Solution:
+     def threeSum(self, nums: List[int]) -> List[List[int]]:
+         ans = list()
+         nums.sort()
+         for curr in range(len(nums)):
+             if nums[curr] > 0:
+                 return ans
+             if curr > 0 and nums[curr] == nums[curr - 1]:
+                 continue
+             left, right = curr + 1, len(nums) - 1
+             while left < right:
+                 total = nums[curr] + nums[left] + nums[right]
+                 if total > 0:
+                     right -= 1
+                 elif total < 0:
+                     left += 1
+                 else:
+                     ans.append([nums[curr], nums[left], nums[right]])
+                     while left < right and nums[left] == nums[left + 1]: left += 1
+                     while left < right and nums[right] == nums[right - 1]: right -= 1
+                     left += 1
+                     right -= 1
+         return ans
+ ```
+

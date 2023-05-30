@@ -1,6 +1,6 @@
 ### Question 151 Reverse Words in a String
 
-![image-20220911200123100](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220911200123100.png)
+![image-20230430151246602](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230430151246602.png)
 
 这道题目可以注意到的细节是，前后的空格需要移除，而且单词之间的空格可能有好几个，我们只能保存一个。
 
@@ -53,5 +53,58 @@ class Solution {
         }
     }
 }
+```
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s = s.split()
+        myList = s[::-1]
+        return ' '.join(myList)
+```
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        myList = self.removeSpace(s)
+        self.reverseList(myList, 0, len(myList) - 1)
+        self.reverseEachWord(myList)
+        return ''.join(myList)
+
+
+    def removeSpace(self, s: str) -> list:
+        ans = []
+        left, right = 0, len(s) - 1
+        while left < right and s[left] == ' ': 
+            left += 1
+        while left < right and s[right] == ' ': 
+            right -= 1
+        while left <= right:
+            if s[left] != ' ':
+                ans.append(s[left])
+            elif ans[-1] != ' ':
+                ans.append(' ')
+            left += 1
+        return ans
+    
+    # [], both inclusive
+    def reverseList(self, s: list, begin: int, end: int) -> None:
+        while begin < end:
+            c = s[begin]
+            s[begin] = s[end]
+            s[end] = c
+            begin += 1
+            end -= 1 
+    
+    def reverseEachWord(self, myList : list) -> None:
+        slow, fast = 0, 0
+        while fast < len(myList):
+            if fast == len(myList) - 1:
+                self.reverseList(myList, slow, fast)
+            elif myList[fast] == ' ':
+                self.reverseList(myList, slow, fast - 1)
+                slow = fast + 1
+            fast += 1
+
 ```
 

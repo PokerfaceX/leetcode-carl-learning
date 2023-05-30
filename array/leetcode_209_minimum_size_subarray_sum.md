@@ -4,7 +4,7 @@ leetcode题目209
 
 以下是题目介绍
 
-![image-20220625205600273](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220625205600273.png)
+![image-20230416081138443](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230416081138443.png)
 
 这道题目是一道滑动窗口的经典问题，这里滑动窗口的原则就是为了让窗口里的数值符合条件，也就是大于等于target，当满足条件的时候便从左侧开始逐渐减少窗口的长度(用来找出最短窗口长度)，直到滑动窗口里的数值不满足题目条件为止
 
@@ -34,6 +34,21 @@ class Solution {
 
 
 
+
+```python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left, right = 0, 0
+        currSum = 0
+        length = sys.maxsize
+        for right in range(len(nums)):
+            currSum += nums[right]
+            while currSum >= target:
+                length = min(right - left + 1, length)
+                currSum -= nums[left]
+                left += 1
+        return 0 if length == sys.maxsize else length
+```
 
 
 

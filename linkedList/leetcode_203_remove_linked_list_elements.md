@@ -1,6 +1,6 @@
 ### Question 203 Remove Linked List Elements
 
-![image-20220629173552009](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220629173552009.png)
+![image-20230418204928471](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230418204928471.png)
 
 如果只是在linkedlist里面删除一次删除操作，代码相对简单，但是这里涉及到的点是多次的删除操作。
 
@@ -37,5 +37,24 @@ class Solution {
         return dummy.next;
     }
 }
+```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummyNode = ListNode(-1, head)
+        curr = dummyNode
+        while curr.next != None:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        return dummyNode.next
+
 ```
 

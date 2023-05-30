@@ -1,6 +1,6 @@
 ### Question 34 Find First and Last Position of Element in Sorted Array
 
-![image-20220626201728967](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220626201728967.png)
+![image-20230322204924905](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230322204924905.png)
 
 若是完全理解这道题目就说明完全理解了二分查找！
 

@@ -1,6 +1,6 @@
 ### Question 216 Combination Sum III
 
-![image-20221103233002299](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221103233002299.png)
+![image-20230513170425800](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230513170425800.png)
 
 这道题目和77题几乎是一模一样的写法，但是多了一个变量来记录当前的和
 
@@ -19,19 +19,19 @@ class Solution {
     
     // 其实可以在这个方法的参数里面加入currSum那样的话就不用特意写上回溯的逻辑，因为计算机自动进行了回溯
     public void traversal(int k, int n, int start) {
+      // 剪枝操作
+        if (currSum >= n) {
+            return;
+        } 
+      
         if (path.size() == k) {
             if (currSum == n) {
                 ans.add(new ArrayList<>(path));
             }
             return;
         }
-        // 剪枝操作
-        if (currSum >= n) {
-            return;
-        }
-        
         //  这里也是一个剪枝的操作
-        for(int i = start; i <= 9 - (k - path.size()) + 1; i++) {
+        for(int i = start; i <= 9; i++) {
             currSum += i;
             path.add(i);
             traversal(k, n, i + 1);

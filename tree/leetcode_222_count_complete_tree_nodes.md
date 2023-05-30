@@ -1,8 +1,8 @@
 ### Question 222 Count Complete Tree Nodes
 
-![image-20220925214715683](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220925214715683.png)
+![image-20230506200645855](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230506200645855.png)
 
-这道题目的话，可以使用后续遍历，来分别计算出左子树和右子树的节点数量，在进行加一操作来得出全部的节点数量
+这道题目的话，可以使用前序遍历，来分别计算出左子树和右子树的节点数量，在进行加一操作来得出全部的节点数量
 
 ```java
 class Solution {
@@ -10,10 +10,7 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        int numOfLeft = countNodes(root.left);
-        int numOfRight = countNodes(root.right);
-        return numOfLeft + numOfRight + 1;
-       
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
 }
 ```

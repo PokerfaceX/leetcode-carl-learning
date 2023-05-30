@@ -1,32 +1,31 @@
 ### Question 429 N-ary Tree Level Order Traversal
 
-![image-20220922225635087](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220922225635087.png)
+![image-20230505214015302](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230505214015302.png)
 
 再次是一道经典的树层序遍历模板套用题目，只要稍微做一下调整就好
 
 ```java
 class Solution {
     public List<List<Integer>> levelOrder(Node root) {
-        Queue<Node> queue = new LinkedList<>();
         List<List<Integer>> ans = new ArrayList<>();
-        if (root != null) {
-            queue.add(root);
+        if (root == null) {
+            return ans;
         }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> list = new ArrayList<>();
-            while (size > 0) {
+            List<Integer> currLayer = new ArrayList<>();
+            for(int i = 0; i < size; i++) {
                 Node curr = queue.poll();
-                list.add(curr.val);
-                // 用来加入每一个j
                 for(Node tmp: curr.children) {
                     if (tmp != null) {
-                         queue.add(tmp);
+                        queue.add(tmp);
                     }
                 }
-                size--;
+                currLayer.add(curr.val);
             }
-            ans.add(list);
+            ans.add(currLayer);
         }
         return ans;
     }

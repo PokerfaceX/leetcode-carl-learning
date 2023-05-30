@@ -1,6 +1,6 @@
 ### Question 450 Delete Node in a BST
 
-![image-20221030191837803](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20221030191837803.png)d
+![image-20230509200517097](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230509200517097.png)
 
 这道题目算是蛮难的一道题，但是考的概率非常高。
 
@@ -35,14 +35,13 @@ class Solution {
             // 跟上面逻辑一样，但是把右子树返回
             } else if (root.left == null && root.right != null) {
                 return root.right;
-            // 我们把左子树放到右子树的最小节点的左面就可以了，不会打破二叉树的特性
+            // 我们把左子树放到右子树的最小节点的左面就可以了，不会打破二叉搜索树的特性
             } else {
-                TreeNode currLeft = root.left;
                 TreeNode tmp = root.right;
                 while (tmp.left != null) {
                     tmp = tmp.left;
                 }
-                tmp.left = currLeft;
+                tmp.left = root.left;
                 return root.right;
             }
         } else if (root.val < key) {

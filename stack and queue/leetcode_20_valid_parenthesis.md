@@ -1,6 +1,6 @@
 ### Question 20 Valid Parentheses
 
-![image-20220915153654426](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220915153654426.png)
+![image-20230501202654869](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230501202654869.png)
 
 这道题目的思路倒是蛮简单的，我们把左侧括号全部放进栈中，在看右侧括号和栈中pop出来的左侧括号匹不匹配，就能知道是不是一个valid parenthesis
 

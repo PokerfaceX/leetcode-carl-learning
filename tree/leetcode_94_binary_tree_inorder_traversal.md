@@ -1,6 +1,6 @@
 ### Question 94 Binary Tree Inorder Traversal
 
-![image-20220919213556500](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220919213556500.png)
+![image-20230504211346951](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230504211346951.png)
 
 inorder，也就是中序遍历，实施的是左中右的遍历方式，先把所有的左子树遍历完，在添加中间节点的数值，在开始遍历右子树
 

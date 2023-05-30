@@ -2,9 +2,7 @@
 
 二分查找看起来不难，但是其实难就难在他的边界判定上，这里一律使用**左闭右开**原则
 
-
-
-![image-20220624134018870](C:\Users\jason\AppData\Roaming\Typora\typora-user-images\image-20220624134018870.png)
+![image-20230228224557592](/Users/jasonjin/Library/Application Support/typora-user-images/image-20230228224557592.png)
 
 
 
@@ -29,4 +27,44 @@ while (left < right) {
 ```
 
 *****
+
+
+
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (target < nums[mid]) {
+                right = mid;
+            } else if (target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums)
+
+        while left < right:
+            mid = (left + right) // 2 # 如果用/ 而不是 //就会返回一个float数值
+            if nums[mid] > target:
+                right = mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                return mid
+        return -1
+```
 
